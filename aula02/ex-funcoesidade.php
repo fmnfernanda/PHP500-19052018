@@ -20,3 +20,5 @@ function parImpar ($num)
 parImpar($num1);
 
 echo '<hr>';
+
+//echo parImpar ($num)? 'maior' : 'menor';
