@@ -16,7 +16,8 @@ $frequencia = readline ('Digite sua frequencia: ');
 if ($nota >=7 && $frequencia >= 8){
 	echo 'APROVADO' . PHP_EOL;
 }
-elseif ($nota >= 5 && $frequencia >= 8 || $nota < 7 && $frequencia >= 8){
+//$nota >= 5 && $frequencia >= 8 || $nota < 7 && $frequencia >= 8
+elseif ($nota >= 5 && $frequencia >= 8){
 	echo 'ESTA DE RECUPERACAO' . PHP_EOL;
 }
 else {
