@@ -1,0 +1,75 @@
+CREATE TABLE posts(
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+titulo VARCHAR(150) NOT NULL UNIQUE,
+conteudo TEXT NOT NULL
+);
+
+ALTER TABLE posts DROP data_criacao;
+
+CREATE TABLE usuario(
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR(255) NOT NULL,
+email VARCHAR(150) NOT NULL,
+senha VARCHAR(10) NOT NULL
+);
+
+
+CREATE TABLE posts(
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+titulo VARCHAR(200) NOT NULL,
+conteudo TEXT,
+criado_em DATETIME DEFAULT NOW(),
+publicado BOOLEAN DEFAULT FALSE,
+usuario_id INT NOT NULL REFERENCES usuario(id)
+);
+
+CREATE TABLE posts(
+	id INT NOT NULL AUTO_INCREMENT,
+	titulo VARCHAR(200) NOT NULL,
+	conteudo TEXT,
+	criado_em DATETIME DEFAULT NOW(),
+	publicado BOOLEAN DEFAULT FALSE,
+	usuario_id INT NOT NULL,
+	PRIMARY KEY (id),
+	FOREIGN KEY (usuario_id) REFERENCES usuario(id)
+);
+
+##inserndo informacoes no banco
+
+INSERT INTO usuario(nome,email,senha) VALUES ('Lucas Marques', 'lucas@4linux.com','123');
+INSERT INTO usuario(nome,email,senha) VALUES ('Fernanda Martins', 'fmartins@t4f.com.br','456');
+INSERT INTO usuario(nome,email,senha) VALUES ('Felipe Nunes', 'fnunes@4linux.com','246');
+INSERT INTO usuario(nome,email,senha) VALUES ('Andreia Bochi', 'abochi@4linux.com','135');
+INSERT INTO usuario(nome,email,senha) VALUES ('Pedro', 'pmiranda@4linux.com','135');
+INSERT INTO usuario(nome,email,senha) VALUES ('Kamilla', 'kbardella@4linux.com','135');
+INSERT INTO usuario(nome,email,senha) VALUES ('Milena', 'mbardella@4linux.com','135');
+
+## buscando informacao do banco
+SELECT * FROM usuario;
+
+##atualizando informacoes do banco
+UPDATE usuario SET nome = 'Lucas M' WHERE id = 1;
+
+## deletando informacoes do banco
+DELETE FROM usuario WHERE id = 6;
+
+SELECT * FROM usuario WHERE senha = 246;
+SELECT * FROM usuario WHERE senha = 246 AND nome = 'nunes';
+
+SELECT * FROM usuario WHERE senha = 246 AND nome like '%nunes';
+SELECT * FROM usuario WHERE senha = 246 AND nome like 'nunes%';
+
+
+INSERT INTO posts(titulo,usuario_id) VALUES ('Meu Post 1', '1');
+INSERT INTO posts(titulo,usuario_id) VALUES ('Meu Post 2', '2');
+INSERT INTO posts(titulo,usuario_id) VALUES ('Meu Post 3', '3');
+INSERT INTO posts(titulo,usuario_id) VALUES ('Meu Post 4', '5');
+INSERT INTO posts(titulo,usuario_id) VALUES ('Meu Post 5', '7');
+INSERT INTO posts(titulo,usuario_id) VALUES ('Meu Post 6', '8');
+INSERT INTO posts(titulo,usuario_id) VALUES ('Meu Post 7', '9');
+
+SELECT u.*, p.* FROM posts p INNER JOIN usuario u ON p.usuario_id = u.id WHERE u.id = 7;
+
+
+
+
